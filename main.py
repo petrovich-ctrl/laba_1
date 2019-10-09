@@ -24,9 +24,8 @@ def parseEven(arr,number,p=5):
 
 def list(arr, symbolsAmount, length,):
     dictionary = []
-    for w in range(0, symbolsAmount):  # Creating the dictionary of right size
+    for w in range(0, symbolsAmount):
         dictionary.append([])
-
     i = 0
     for t in range(0, len(arr) - 1, length + 1):  # Filling it
         for d in range(t + 1, t + length + 1):
@@ -45,9 +44,15 @@ def show(arr, horScale):
 
 def invert(arr):
     res=[]
-    for i in range(0,len(res)):
-        res.append(Xor(arr[i],1))
+    for i in range(0,len(arr)):
+        res.append(str((st(arr[i]))))
     return res
+
+def st(x):
+    if(x==str('1')):
+        return str('0')
+    elif(x==str('0')):
+        return str('1')
 
 def maxInd(arr):
     max = arr[0]
