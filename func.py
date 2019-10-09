@@ -6,7 +6,7 @@ SessionID = "petrovich"
 
 hScale = 20
 vScale = 20
-level = 0.4
+level = 1.0
 length = 20
 
 
@@ -38,19 +38,17 @@ async def work1():
             await websocket.send("Ready")
             response = await websocket.recv()
             print(f"\n>Request: Ready \n<Response: Task-{step + 1} \n{response}\n")
-
             x = m.parseEven(response, step)
 
             probs = []
-            if(level==1):
-                answer=m.find(m.invert(x),dictionary)
-            elif(level==0):
-                answer=m.find(x, dictionary)
+            if (level == 0):
+                answer = m.find(x, dictionary)
+            elif (level == 1):
+                answer = m.find(m.invert(x), dictionary)
             else:
                 for k in range(0, numAmount):
                     a = m.best(x, dictionary[k], level)
                     probs.append(a)
-
                 answer = m.maxInd(probs)
 
             await websocket.send(f"{step + 1} {answer}")
